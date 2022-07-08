@@ -42,25 +42,25 @@ class RandomHabitAdapter(
 
     inner class PagerViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        //TODO 14 : Create view and bind data to item view done
+        //TODO 14 : Create view and bind data to item view
         private val tvTitle : TextView = itemView.findViewById(R.id.pager_tv_title)
         private val tvStartTime : TextView = itemView.findViewById(R.id.pager_tv_start_time)
         private val tvMinutes : TextView = itemView.findViewById(R.id.pager_tv_minutes)
         private val ivPriority : ImageView = itemView.findViewById(R.id.pager_priority_level)
-        private val btnStartCountdown : Button = itemView.findViewById(R.id.btn_open_count_down)
+        private val btnOpenCountdown : Button = itemView.findViewById(R.id.btn_open_count_down)
 
         fun bind(pageType: PageType, pageData: Habit) {
             tvTitle.text = pageData.title
             tvStartTime.text = pageData.startTime
             tvMinutes.text = pageData.minutesFocus.toString()
 
-            val icPriority = when (pageType){
-                PageType.HIGH      -> R.drawable.ic_priority_high
-                PageType.MEDIUM    -> R.drawable.ic_priority_medium
-                PageType.LOW       -> R.drawable.ic_priority_low
+            when(pageType) {
+                PageType.HIGH -> ivPriority.setImageResource(R.drawable.ic_priority_high)
+                PageType.MEDIUM -> ivPriority.setImageResource(R.drawable.ic_priority_medium)
+                PageType.LOW -> ivPriority.setImageResource(R.drawable.ic_priority_low)
             }
-            ivPriority.setImageResource(icPriority)
-            btnStartCountdown.setOnClickListener { onClick(pageData) }
+
+            btnOpenCountdown.setOnClickListener { onClick(pageData) }
         }
     }
 }
